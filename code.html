@@ -2,7 +2,7 @@
 <html lang="en" class="h-100">
 
 <head>
-    <title>App Name: A Coding Project By Vic Manuel Ortiz</title>
+    <title>RACECAR: A Coding Project By Vic Manuel Ortiz</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -15,13 +15,15 @@
 
     <link rel="stylesheet" href="css/site.css">
     <link rel="stylesheet" href="css/prism.css">
+    <link rel="icon" href="img/favicon.ico">
 </head>
 
 <body class="d-flex flex-column h-100">
     <!-- nav section -->
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-black">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">APP NAME</a>
+            <a class="navbar-brand" href="#"><img src="img/Vic manuel.png" width="36" height="36"
+                    class="d-inline-block align-text-top"> RACECAR</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -38,11 +40,11 @@
                         <a class="nav-link active" aria-current="page" href="code.html">The Code</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" target="_blank" href="#">Git Repo</a>
+                        <a class="nav-link" target="_blank" href="https://github.com/vicmo616/racecar">Git Repo</a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" target="_blank" href="#">About</a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </div>
@@ -50,44 +52,143 @@
     <!-- main section -->
     <main class="flex-shrink-0">
         <div class="container px-5 py-5 mt-5">
-            <h2 class="border-1 border-bottom bottom-dark">The Code for APP NAME</h2>
+            <h2 class="border-1 border-bottom bottom-dark">The Code for RACECAR</h2>
             <div class="row row-cols-1 row-cols-lg-2">
                 <div class="col-lg-8">
                     <pre class="line-numbers">
                         <code class="language-javascript">
-                            //call hello world
-                            function HelloWorld() {
-                                alert("hello world");
-                            } 
+                            //get the user input from the page
+                            //controller function
+                            function getValue() {
+                                //make sure alert is invisible
+                                document.getElementById("alert").classList.add("invisible");
+                            
+                                let userText = document.getElementById("userText").value;
+                            
+                                //check for a palindrome
+                                let returnObj = palindromeCheck(userText);
+                            
+                                //display message to the page
+                                displayMessage(returnObj);
+                            }
+                            //check if text is a palindrome
+                            function palindromeCheck(userText) {
+                            
+                                //racecar
+                                userText = userText.toLowerCase();
+                            
+                                //remove spaces and special characters
+                                let regex = /[^a-z0-9]/gi;
+                                userText = userText.replace(regex, "");
+                            
+                                let revText = [];
+                                let returnObj = {};
+                            
+                                //reverse a string using a for loop
+                                for (let index = userText.length - 1; index >= 0; index--) {
+                                    revText += userText[index];
+                            
+                                }
+                            
+                                if (revText == userText) {
+                                    returnObj.msg = "Well Done! You Entered A Palindrome."
+                                }
+                                else {
+                                    returnObj.msg = "Sorry! You Did Not Enter A Palindrome."
+                                }
+                            
+                                returnObj.reversed = revText;
+                                return returnObj;
+                            
+                            }
+                            //display the message to the screen
+                            function displayMessage(returnObj) {
+                            
+                                document.getElementById("alertHeader").innerHTML = returnObj.msg;
+                                document.getElementById("msg").innerHTML = `Your phrase reversed is: ${returnObj.reversed}`;
+                                document.getElementById("alert").classList.remove("invisible");
+                            }
                         </code>
                     </pre>
                 </div>
                 <div class="col-lg-4">
-                    <p>The Code is structured in one function.</p>
-                    <h5>Hello world</h5>
-                    <p>Hello world is a function that displays an alert with a message of hello world.</p>
+                    <p>The Code is structured in three functions.</p>
+                    <h5>getValue</h5>
+                    <p>In this first function we start by initiating a process by which we get the inputted values from
+                        the screen so we can manipulate it and find out if it meets our programs requirements. In order
+                        to do this we use <strong>document.getElementById</strong> to specify the users text and assign
+                        it to the variable named just that: <strong>userText</strong> Next order of business is to
+                        sheild our beloved alert message from the page that notifies the user if they were successful or
+                        not. We do this by using the ever so useful <strong>document.getElementById</strong> method once
+                        more and adding to the "alert" id's classList and inputting "invisible" to make it remain unseen
+                        for
+                        the time being. Next we need to check if our users input in a palindrome or not, we make this
+                        happen
+                        in the next function <strong>palindromeCheck</strong> which has been assigned to another
+                        variable to
+                        be used as an object called <strong>returnObj</strong> so we can lastly attach it to
+                        our <strong>displayMessage</strong> function to display to the page once all requirements have
+                        been
+                        met.</p>
+                    <h5>palindromeCheck</h5>
+                    <p> Here is where we essentially check to see if what was inputted by our user is a palindrome,
+                        first we need to eliminate all possiblities of a potential error to occur when accepting said
+                        input. First we want to make what we accept case sensitive, specifically lower case by use of
+                        the <strong>.toLowerCase</strong> method which converts a string to lower case letters.
+                        We follow that up by also excluding any spaces and special characters by converting any of which
+                        that may be submitted to an empty string using our <strong>regex</strong> and
+                        <strong>.replace</strong> method.
+                        Now that we have that set up nicely, we will begin to set up our for loop to reverse our string
+                        and validate it is what we expect it to be in decrementing fashion. We instantiate an empty
+                        string called <strong>revText</strong> and also make our <strong>returnObj</strong> accept
+                        many possible properties by use of curly braces, two of which we will want it to hold is a
+                        message and a reversed string. In our loop we use our <strong>userText</strong>'s length be our
+                        index, and as long that length is larger than the integer 0 we to decrement backwards until that
+                        is no longer the case, essentially starting from the end our inputted text retreating to the
+                        start of its index. In order to properly do this our indexes length need to be initiated with a
+                        minus one next to it because all indexes in arrays are zero based.
+                        Now we will take our <strong>revText</strong> variable and add to it as we iterate through the
+                        indexes of our <strong>userText</strong> and in turn that will reverse our string.
+                        To conclude this function we resort to an if else statement to verify if our reversed text
+                        equals or matches the original users text, and if it does we will relay a message saying if it
+                        does or not creating our <strong>returnObj.msg</strong> message.
+                    </p>
+                    <h5>displayMessage</h5>
+                    <p>This accepts <strong>returnObj</strong> as a parameter which is embodied with the
+                        <strong>palindromeCheck</strong> function.
+                        With a series of uses of <strong>document.getElementById</strong> we proceed to display our
+                        message to user.
+                        First we grab the "alertHeader" Id and attach our returnObj message in the innerHTML. Next we
+                        grab the "msg" id and make our own message using a template literal to input the value of
+                        returnObj.reversed into our statement.
+                        Lastly we have to unhide our "alert" from the page by doing just the opposite of what was done
+                        earlier when we added to its classList, now we are to simply remove from said classList to
+                        unveil our alert message to the page.
+                    </p>
                 </div>
             </div>
         </div>
     </main>
     <!-- footer section -->
-    <footer class="footer mt-auto py-3">
+    <footer class="footer mt-auto py-3 bg-black">
         <div class="container-fluid ">
             <div class="row row-cols-1 row-cols-lg-3 gy-2">
                 <div class="col  order-last order-lg-first text-light">
                     <div><span class="text-muted">&copy;2021</span> Vic Manuel Ortiz | vicmo616@gmail.com</div>
                 </div>
-                <div class="col align-items-center justify-content-start justify-content-lg-center">
-                    <!-- <img src="" alt="Vic Manuel Ortiz Logo" height="24"> -->
+                <div class="col align-items-center d-flex justify-content-center justify-content-lg-center ml-5">
+                    <img src="img/favicon.ico" alt="Vic Manuel Ortiz Logo">
                 </div>
                 <div class="col d-flex align-items-center justify-content-start justify-content-lg-end">
                     <div class="row">
-                        <div class="col social"><a target="_blank" href="#"><i class="fab fa-twitter fa-2x"></i></a>
+                        <div class="col social"><a target="_blank" href="https://github.com/vicmo616/"><i
+                                    class="fab fa-github fa-2x"></i></a>
                         </div>
-                        <div class="col social"><a target="_blank" href="#"><i class="fab fa-linkedin fa-2x"></i></a>
+                        <div class="col social"><a target="_blank" href="https://www.linkedin.com/"><i
+                                    class="fab fa-linkedin fa-2x"></i></a>
                         </div>
-                        <div class="col social"><a target="_blank" href="#"><i class="fab fa-github fa-2x"></i></a>
-                        </div>
+                        <!-- <div class="col social"><a target="_blank" href="#"><i class="fab fa-github fa-2x"></i></a>
+                        </div> -->
                     </div>
                 </div>
             </div>

@@ -13,13 +13,17 @@ nav {
     background-color: var(--dark-color);
 }
 
+.fas {
+    color: #A47A30;
+}
+
 footer {
     background-color: var(--dark-color);
     padding-right: 1rem;
 }
 
 h1,h2,h3,h4,h5,h6 {
-    color: var(--primary-color);
+    color: var(--dark-color);
 }
 
 footer .social>a {
@@ -29,7 +33,7 @@ footer .social>a {
 
 footer .social>a:hover {
     opacity: 0.9;
-    color: var(--secondary-color);
+    color: #A47A30;
 }
 
 .bsicon {
